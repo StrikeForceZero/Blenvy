@@ -90,6 +90,8 @@ def copy_hollowed_collection_into(source_collection, destination_collection, par
             continue
         if object.parent is not None: # if there is a parent, this object is not a direct child of the collection, and should be ignored (it will get picked up by the recursive scan inside duplicate_object)
             continue
+        if object.hide_viewport == True or object.hide_render == True: # Skip objects marked as hidden
+            continue
         #check if a specific collection instance does not have an ovveride for combine_mode
         combine_mode = object['_combine'] if '_combine' in object else collection_instances_combine_mode
         parent = parent_empty
